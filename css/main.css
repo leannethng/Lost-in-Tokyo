@@ -1,6 +1,6 @@
 body {
   -webkit-font-smoothing: antialiased;
-  font-family: 'Overpass Mono', monospace;
+  font-family: "Overpass Mono", monospace;
   font-size: 1rem;
   line-height: 1.5;
   color: #fff;
@@ -26,7 +26,7 @@ body {
 }
 
 .highlight:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
@@ -45,14 +45,14 @@ body {
 
 .highlight-aqua:before {
   height: 14px;
-  background-image: url('../images/zigzag.svg');
+  background-image: url("../images/zigzag.svg");
   background-repeat: repeat-x;
   background-position-y: bottom;
 }
 
 .highlight-yellow:before {
   height: 10px;
-  background-image: url('../images/wave.svg');
+  background-image: url("../images/wave.svg");
   background-repeat: repeat-x;
   background-position-y: bottom;
 }
@@ -68,3 +68,7 @@ body {
     max-width: 120px;
   }
 }
+
+/* .title {
+  color: #ff00e6;
+} */
