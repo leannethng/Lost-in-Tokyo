@@ -1,19 +1,27 @@
+// We can grab only the properties we want through ie ({className, href, children}) instead of having (props) this means we dont need ot add props to begining of every item in the jsx below ie props.children etc. 
+const NavItem = ({className, href, children}) => (
+  <li className={`mh2-ns f6 f4-1 tc ${className}`}>
+    <a className='white no-underline' href={href}>
+      {children}
+    </a>
+  </li>
+);
+
 const Nav = () =>(
   <nav className="pt3 pt4-ns mb4 mb0-ns">
     <ul className="list flex flex-wrap flex-nowrap-ns justify-between items-center pa0 ma0">
       {menu.map(item => (
-        <li className={`mh2-ns f6 f4-1 tc ${item.className}`}>
-          <a className='white no-underline' href={item.href}>{item.children}</a>
-        </li>
+        // Grabbing all the item variable and all the properties inside it and spreading it out so we don't have to repeat. children = {items.children} etc - ({...item} is a spread operator)
+        <NavItem {...item}/>
       ))}
     </ul>
   </nav>
 );
 
 
-const Highlight = props => (
-  <span className={`relative highlight highlight-${props.color}`}>
-    <span className="relative z-2">{props.children}</span>
+const Highlight = ({color, children}) => (
+  <span className={`relative highlight highlight-${color}`}>
+    <span className="relative z-2">{children}</span>
   </span>
 );
 
