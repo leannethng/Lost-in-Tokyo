@@ -7,6 +7,7 @@ const menu = [
   },
   {
     children: 'About',
+    logo: false,
     className: 'order-1-ns w-20',
     href: 'about.html'
   },

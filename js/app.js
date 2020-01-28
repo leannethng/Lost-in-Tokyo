@@ -1,11 +1,13 @@
-// We can grab only the properties we want through ie ({className, href, children}) instead of having (props) this means we dont need ot add props to begining of every item in the jsx below ie props.children etc. 
-const NavItem = ({className, href, children}) => (
+// We can grab only the properties we want through ie ({className, href, children}) instead of having (props) this means we dont need to add props to begining of every item in the jsx below ie props.children etc. 
+const NavItem = ({className, href, children, logo}) => (
   <li className={`mh2-ns f6 f4-1 tc ${className}`}>
     <a className='white no-underline' href={href}>
-      {children}
+    {/* If statement */}
+    {logo ? <img src="./images/logo.svg" className="db center logo" /> : children}
     </a>
   </li>
 );
+
 
 const Nav = () =>(
   <nav className="pt3 pt4-ns mb4 mb0-ns">
@@ -40,10 +42,12 @@ const Intro = () => (
 const App = () => (
   <div>
     <div className="min-vh-100 ph4 flex flex-column">
+       {/* Navigation component  */}
       <Nav />
-      <Intro />
-      {/* Navigation component  */}
       {/* Intro text component */}
+      <Intro />
+     
+      
     </div>
     <div className="flex flex-wrap container">
       {/* Attraction list component */}
