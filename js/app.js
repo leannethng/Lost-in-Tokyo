@@ -39,6 +39,31 @@ const Intro = () => (
   </div>
 );
 
+
+const Attraction= ({link, image, className, title, description}) => (
+  <div className= {`ph4 ph5-ns ph0-l mb4 mb5-ns w-100 overflow-hidden pointer attraction ${className}`}>
+    <div className="relative">
+      <div className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay">
+        <div>
+          <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
+          <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
+        </div>
+      </div>
+      <a href={link}>
+        <img src={`./images/${image}`} className="db" />
+      </a>
+    </div>
+  </div>
+
+  );
+
+
+
+const Attractions =  () => (
+  attractions.map(items => (
+    <Attraction {... items}/>   
+  )));
+
 const App = () => (
   <div>
     <div className="min-vh-100 ph4 flex flex-column">
@@ -51,8 +76,8 @@ const App = () => (
     </div>
     <div className="flex flex-wrap container">
       {/* Attraction list component */}
-    
-
+      <Attractions />
+      
     </div>
   </div>
 );
