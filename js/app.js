@@ -39,24 +39,39 @@ const Intro = () => (
   </div>
 );
 
-
-const Attraction= ({link, image, className, title, description}) => (
-  <div className= {`ph4 ph5-ns ph0-l mb4 mb5-ns w-100 overflow-hidden pointer attraction ${className}`}>
-    <div className="relative">
-      <div className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay">
-        <div>
-          <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
-          <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
+// We can also create components as classes or functional components, these open up more advanced functionality and features such as the component lifecycle as well as react's in-built state
+class Attraction extends React.Component {
+  render(){
+   
+    const {link, image, className, title, description} = this.props
+    // the code above is shorthand for
+      // const title = this.props.title 
+      // const description = this.props.description etc, etc
+    // This is called destructuring!
+      // const {description} = this.props
+  
+    return (
+      <div className= {`ph4 ph5-ns ph0-l mb4 mb5-ns w-100 overflow-hidden pointer attraction ${
+          className
+          }`}
+          // Testing events in React
+          onMouseOver={() => alert('clicked')}
+      >
+      <div className="relative">
+        <div className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay">
+          <div>
+            <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
+            <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
+          </div>
         </div>
+        <a href={link}>
+          <img src={`./images/${image}`} className="db" />
+        </a>
       </div>
-      <a href={link}>
-        <img src={`./images/${image}`} className="db" />
-      </a>
     </div>
-  </div>
-
-  );
-
+    )
+  }
+}
 
 
 const Attractions =  () => (
@@ -71,13 +86,10 @@ const App = () => (
       <Nav />
       {/* Intro text component */}
       <Intro />
-     
-      
     </div>
     <div className="flex flex-wrap container">
       {/* Attraction list component */}
       <Attractions />
-      
     </div>
   </div>
 );
