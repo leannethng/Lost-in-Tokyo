@@ -41,6 +41,14 @@ const Intro = () => (
 
 // We can also create components as classes or functional components, these open up more advanced functionality and features such as the component lifecycle as well as react's in-built state
 class Attraction extends React.Component {
+  // JS thing not React thing
+  constructor(props){
+    super(props)
+    this.state = {
+      fullname: ''
+    }
+  }
+
   render(){
    
     const {link, image, className, title, description} = this.props
@@ -55,9 +63,21 @@ class Attraction extends React.Component {
           className
           }`}
           // Testing events in React
-          onMouseOver={() => alert('clicked')}
+          // onMouseOver={() => alert('clicked')}
       >
-      <div className="relative">
+        {/* Quick example of using state */}
+        <div className="relative">
+          <input 
+            className="relative z-3"
+            onChange={event => this.setState({
+            fullname: event.target.value
+          })
+          } 
+          
+        />
+         <h1>{this.state.fullname}</h1>
+
+
         <div className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay">
           <div>
             <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
