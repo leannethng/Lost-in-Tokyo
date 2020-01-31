@@ -45,40 +45,37 @@ class Attraction extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      fullname: ''
-    }
+      showInfo: false,
+    };
   }
 
   render(){
    
     const {link, image, className, title, description} = this.props
+  
     // the code above is shorthand for
       // const title = this.props.title 
       // const description = this.props.description etc, etc
     // This is called destructuring!
       // const {description} = this.props
+
+      const {showInfo} = this.state;
   
     return (
       <div className= {`ph4 ph5-ns ph0-l mb4 mb5-ns w-100 overflow-hidden pointer attraction ${
           className
           }`}
-          // Testing events in React
-          // onMouseOver={() => alert('clicked')}
+        onMouseOver={() => this.setState({showInfo: true})}    
+        onMouseOut={() => this.setState({showInfo: false})}    
       >
-        {/* Quick example of using state */}
+        {/* {showInfo ? 'show info!': 'hide info'} */}
         <div className="relative">
-          <input 
-            className="relative z-3"
-            onChange={event => this.setState({
-            fullname: event.target.value
-          })
-          } 
+        <div 
+          className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay" 
+          style={{
           
-        />
-         <h1>{this.state.fullname}</h1>
-
-
-        <div className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay">
+            transform: showInfo ? 'none' : 'translateY(-100%)'
+          }}>
           <div>
             <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
             <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
