@@ -109,7 +109,7 @@ class Attraction extends React.Component {
       >
         {/* {showInfo ? 'show info!': 'hide info'} */}
         <div className="relative">
-          {/* Here we rememebr to pass down all of our props and state */}
+          {/* Here we remember to pass down all of our props and state */}
           <Overlay {...this.props}{...this.state}/>
         <a href={link}>
           <img src={`./images/${image}`} className="db" />
