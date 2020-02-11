@@ -57,12 +57,12 @@ class Attraction extends React.Component {
     // Added preventDefault so it doesn't click through to the link, not desired behavior but just using it for learning purposes
     e.preventDefault();
     this.setState((prevState, props) => {
-      // console.log(prevState.showInfo)
+      //  Invert the showInfo bolean by using the previous state and a bang ! prevState is a optional props parameter that is built into the state api
       return {showInfo: !prevState.showInfo}
 
     })
-    // console.log('You have toggled!');
   }
+
 
   render(){
    
