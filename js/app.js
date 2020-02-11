@@ -20,7 +20,7 @@ const Nav = () =>(
   </nav>
 );
 // Pulled out overlay and made it into its own component
-const Overlay = ({showInfo, title, description}) => (
+const Overlay = ({showInfo, title, description, link}) => (
   <div 
   className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay" 
   style={{
@@ -28,7 +28,9 @@ const Overlay = ({showInfo, title, description}) => (
     transform: showInfo ? 'none' : 'translateY(-100%)'
   }}>
   <div>
+  <a href={link}>
     <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
+    </a>
     <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
   </div>
 </div>
@@ -94,7 +96,7 @@ class Attraction extends React.Component {
     // This is called destructuring!
       // const {description} = this.props
 
-      const {showInfo} = this.state;
+      // const {showInfo} = this.state;
   
     return (
       <div className= {`ph4 ph5-ns ph0-l mb4 mb5-ns w-100 overflow-hidden pointer attraction ${
@@ -102,7 +104,7 @@ class Attraction extends React.Component {
           }`}
         // onMouseOver={() => this.setState({showInfo: true})}    
         // onMouseOut={() => this.setState({showInfo: false})} 
-        onClick={this.toggleInfo}
+        onMouseEnter={this.toggleInfo}
         onMouseLeave={ this.closeInfo } 
       >
         {/* {showInfo ? 'show info!': 'hide info'} */}
