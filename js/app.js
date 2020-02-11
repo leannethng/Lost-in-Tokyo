@@ -19,6 +19,20 @@ const Nav = () =>(
     </ul>
   </nav>
 );
+// Pulled out overlay and made it into its own component
+const Overlay = ({showInfo, title, description}) => (
+  <div 
+  className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay" 
+  style={{
+  
+    transform: showInfo ? 'none' : 'translateY(-100%)'
+  }}>
+  <div>
+    <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
+    <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
+  </div>
+</div>
+)
 
 
 const Highlight = ({color, children}) => (
@@ -50,7 +64,7 @@ class Attraction extends React.Component {
     //Binding `this` so we can use it in our custom methods
     //setState will not work if we don't do this
     this.toggleInfo = this.toggleInfo.bind(this)
-    // this.closeInfo = this.closeInfo.bind(this)
+    this.closeInfo = this.closeInfo.bind(this)
   }
   // This is our own method, we need to tell the custom method about what `this` is
   toggleInfo(e){
@@ -60,6 +74,12 @@ class Attraction extends React.Component {
       //  Invert the showInfo bolean by using the previous state and a bang ! prevState is a optional props parameter that is built into the state api
       return {showInfo: !prevState.showInfo}
 
+    })
+  }
+  //We arent using a function for this one as we dont need access to the previous state, we are just setting the showInfo to be false
+  closeInfo(){
+    this.setState({
+      showInfo: false
     })
   }
 
@@ -82,21 +102,13 @@ class Attraction extends React.Component {
           }`}
         // onMouseOver={() => this.setState({showInfo: true})}    
         // onMouseOut={() => this.setState({showInfo: false})} 
-        onClick={this.toggleInfo}   
+        onClick={this.toggleInfo}
+        onMouseLeave={ this.closeInfo } 
       >
         {/* {showInfo ? 'show info!': 'hide info'} */}
         <div className="relative">
-        <div 
-          className="absolute w-100 h-100 flex items-center pa3 pa4-ns bg-aqua overlay" 
-          style={{
-          
-            transform: showInfo ? 'none' : 'translateY(-100%)'
-          }}>
-          <div>
-            <h1 className="f4 f3-ns mt0 mb2 regular black normal lh-title">{title}</h1>
-            <p className="lh-title lh-copy-ns mv0 black f6 measure-l">{description}</p>
-          </div>
-        </div>
+          {/* Here we rememebr to pass down all of our props and state */}
+          <Overlay {...this.props}{...this.state}/>
         <a href={link}>
           <img src={`./images/${image}`} className="db" />
         </a>
