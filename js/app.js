@@ -47,6 +47,21 @@ class Attraction extends React.Component {
     this.state = {
       showInfo: false,
     };
+    //Binding `this` so we can use it in our custom methods
+    //setState will not work if we don't do this
+    this.toggleInfo = this.toggleInfo.bind(this)
+    // this.closeInfo = this.closeInfo.bind(this)
+  }
+  // This is our own method, we need to tell the custom method about what `this` is
+  toggleInfo(e){
+    // Added preventDefault so it doesn't click through to the link, not desired behavior but just using it for learning purposes
+    e.preventDefault();
+    this.setState((prevState, props) => {
+      // console.log(prevState.showInfo)
+      return {showInfo: !prevState.showInfo}
+
+    })
+    // console.log('You have toggled!');
   }
 
   render(){
@@ -65,8 +80,9 @@ class Attraction extends React.Component {
       <div className= {`ph4 ph5-ns ph0-l mb4 mb5-ns w-100 overflow-hidden pointer attraction ${
           className
           }`}
-        onMouseOver={() => this.setState({showInfo: true})}    
-        onMouseOut={() => this.setState({showInfo: false})}    
+        // onMouseOver={() => this.setState({showInfo: true})}    
+        // onMouseOut={() => this.setState({showInfo: false})} 
+        onClick={this.toggleInfo}   
       >
         {/* {showInfo ? 'show info!': 'hide info'} */}
         <div className="relative">
